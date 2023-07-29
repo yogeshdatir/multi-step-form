@@ -78,14 +78,29 @@ export const FieldInput = styled.input`
 export const FormFooter = styled.div`
   margin-top: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 export const PrimaryButton = styled.button`
   padding: 1rem 1.5rem;
   border-radius: 8px;
+  border: none;
   background: var(--denim, #022959);
   color: var(--white, #fff);
+  font-family: Ubuntu;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: auto;
+`;
+
+export const SecondaryButton = styled.button`
+  padding: 1rem 0;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--grey, #9699aa);
   font-family: Ubuntu;
   font-size: 16px;
   font-style: normal;
