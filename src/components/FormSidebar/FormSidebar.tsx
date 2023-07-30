@@ -1,44 +1,34 @@
+import { IStep } from '../MultiStepForm';
 import {
   StepCircle,
   SidebarContainer,
   StepList,
   Step,
   StepDetails,
-  SelectedStepCircle,
 } from './FormSidebar.styled';
 
-const FormSidebar = () => {
+interface IProps {
+  currentStepIndex: number;
+  stepDetails: IStep['detail'][];
+}
+
+const FormSidebar = ({ currentStepIndex, stepDetails }: IProps) => {
   return (
     <SidebarContainer>
       <StepList>
-        <Step>
-          <SelectedStepCircle>1</SelectedStepCircle>
-          <StepDetails>
-            <p>step 1</p>
-            <h4>your info</h4>
-          </StepDetails>
-        </Step>
-        <Step>
-          <StepCircle>2</StepCircle>
-          <StepDetails>
-            <p>step 2</p>
-            <h4>select plan</h4>
-          </StepDetails>
-        </Step>
-        <Step>
-          <StepCircle>3</StepCircle>
-          <StepDetails>
-            <p>step 3</p>
-            <h4>add-ons</h4>
-          </StepDetails>
-        </Step>
-        <Step>
-          <StepCircle>4</StepCircle>
-          <StepDetails>
-            <p>step 4</p>
-            <h4>summary</h4>
-          </StepDetails>
-        </Step>
+        {stepDetails.map((stepDetail: IStep['detail'], index: number) => {
+          return (
+            <Step>
+              <StepCircle aria-selected={currentStepIndex === index}>
+                {index + 1}
+              </StepCircle>
+              <StepDetails>
+                <p>{`step ${index + 1}`} </p>
+                <h4>{stepDetail}</h4>
+              </StepDetails>
+            </Step>
+          );
+        })}
       </StepList>
     </SidebarContainer>
   );

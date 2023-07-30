@@ -39,27 +39,23 @@ export const StepCircle = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-export const SelectedStepCircle = styled.span`
-  width: 33px;
-  height: 33px;
-  border-radius: 50%;
-  border: 1px solid var(--white, #fff);
-  background-color: var(--white, #fff);
-  color: var(--denim, #022959);
-  text-align: center;
-  font-family: Ubuntu;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &[aria-selected='true'] {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: 1px solid var(--white, #fff);
+    background-color: var(--white, #fff);
+    color: var(--denim, #022959);
+    text-align: center;
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
 `;
 
 export const StepDetails = styled.div`

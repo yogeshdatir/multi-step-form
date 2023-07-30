@@ -1,3 +1,4 @@
+import { IStepInteraction } from '../MultiStepForm';
 import { FormContent } from '../MultiStepForm.styled';
 import {
   FormHeader,
@@ -11,7 +12,7 @@ import {
   PrimaryButton,
 } from './UserForm.styled';
 
-const UserForm = () => {
+const UserForm = ({ next }: { next: IStepInteraction['next'] }) => {
   return (
     <FormContent>
       <FormHeader>
@@ -35,7 +36,7 @@ const UserForm = () => {
         </FormField>
       </FormBody>
       <FormFooter>
-        <PrimaryButton>Next Step</PrimaryButton>
+        <PrimaryButton onClick={next}>Next Step</PrimaryButton>
       </FormFooter>
     </FormContent>
   );

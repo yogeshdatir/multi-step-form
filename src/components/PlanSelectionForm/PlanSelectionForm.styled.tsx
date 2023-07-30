@@ -35,6 +35,7 @@ export const CardDetails = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    text-transform: capitalize;
   }
 
   p {

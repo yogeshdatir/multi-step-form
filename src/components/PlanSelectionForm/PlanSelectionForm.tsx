@@ -17,12 +17,12 @@ import {
   SubPeriodSelector,
   ToggleLabel,
 } from './PlanSelectionForm.styled';
-import { ReactComponent as ArcadeImage } from '../../assets/images/icon-arcade.svg';
-import { ReactComponent as AdvancedImage } from '../../assets/images/icon-advanced.svg';
-import { ReactComponent as ProImage } from '../../assets/images/icon-pro.svg';
 import { useState } from 'react';
+import { IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
 
-const PlanSelectionForm = () => {
+type IProps = { subscriptionPlans: ISubscriptionPlan[] } & IStepInteraction;
+
+const PlanSelectionForm = ({ next, goBack, subscriptionPlans }: IProps) => {
   const [isYearly, setIsYearly] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('arcade');
 
@@ -44,36 +44,27 @@ const PlanSelectionForm = () => {
       </FormHeader>
       <FormBody style={{ gap: '2rem' }}>
         <CardList>
-          <Card
-            aria-selected={selectedPlan === 'arcade'}
-            onClick={() => handlePlanSelection('arcade')}
-          >
-            <ArcadeImage />
-            <CardDetails>
-              <h5>Arcade</h5>
-              <p>$9/mo</p>
-            </CardDetails>
-          </Card>
-          <Card
-            aria-selected={selectedPlan === 'advanced'}
-            onClick={() => handlePlanSelection('advanced')}
-          >
-            <AdvancedImage />
-            <CardDetails>
-              <h5>Advanced</h5>
-              <p>$12/mo</p>
-            </CardDetails>
-          </Card>
-          <Card
-            aria-selected={selectedPlan === 'pro'}
-            onClick={() => handlePlanSelection('pro')}
-          >
-            <ProImage />
-            <CardDetails>
-              <h5>Pro</h5>
-              <p>$15/mo</p>
-            </CardDetails>
-          </Card>
+          {subscriptionPlans.map(
+            ({ name, image, prices }: ISubscriptionPlan) => {
+              return (
+                <Card
+                  aria-selected={selectedPlan === name}
+                  onClick={() => handlePlanSelection(name)}
+                >
+                  {image}
+                  <CardDetails>
+                    <h5>{name}</h5>
+                    {/* TODO: Add transition for prices */}
+                    <p>
+                      {isYearly
+                        ? `$${prices.yearly}/yr`
+                        : `$${prices.monthly}/mo`}
+                    </p>
+                  </CardDetails>
+                </Card>
+              );
+            }
+          )}
         </CardList>
         <SubPeriodSelector>
           <span aria-selected={!isYearly}>Monthly</span>
@@ -89,8 +80,8 @@ const PlanSelectionForm = () => {
         </SubPeriodSelector>
       </FormBody>
       <FormFooter>
-        <SecondaryButton>Go Back</SecondaryButton>
-        <PrimaryButton>Next Step</PrimaryButton>
+        <SecondaryButton onClick={goBack}>Go Back</SecondaryButton>
+        <PrimaryButton onClick={next}>Next Step</PrimaryButton>
       </FormFooter>
     </FormContent>
   );
