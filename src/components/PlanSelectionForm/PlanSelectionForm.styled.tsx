@@ -15,6 +15,7 @@ export const Card = styled.div`
   justify-content: space-between;
   width: 138px;
   height: 160px;
+  cursor: pointer;
 
   &[aria-selected='true'] {
     border: 1px solid var(--purple, #483eff);

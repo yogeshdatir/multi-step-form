@@ -24,8 +24,14 @@ import { useState } from 'react';
 
 const PlanSelectionForm = () => {
   const [isYearly, setIsYearly] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('arcade');
+
   const handleChange = () => {
     setIsYearly(!isYearly);
+  };
+
+  const handlePlanSelection = (clickedPlan: string) => {
+    setSelectedPlan(clickedPlan);
   };
 
   return (
@@ -38,24 +44,33 @@ const PlanSelectionForm = () => {
       </FormHeader>
       <FormBody style={{ gap: '2rem' }}>
         <CardList>
-          <Card aria-selected={true}>
+          <Card
+            aria-selected={selectedPlan === 'arcade'}
+            onClick={() => handlePlanSelection('arcade')}
+          >
             <ArcadeImage />
             <CardDetails>
               <h5>Arcade</h5>
               <p>$9/mo</p>
             </CardDetails>
           </Card>
-          <Card>
+          <Card
+            aria-selected={selectedPlan === 'advanced'}
+            onClick={() => handlePlanSelection('advanced')}
+          >
             <AdvancedImage />
             <CardDetails>
-              <h5>Arcade</h5>
+              <h5>Advanced</h5>
               <p>$12/mo</p>
             </CardDetails>
           </Card>
-          <Card>
+          <Card
+            aria-selected={selectedPlan === 'pro'}
+            onClick={() => handlePlanSelection('pro')}
+          >
             <ProImage />
             <CardDetails>
-              <h5>Arcade</h5>
+              <h5>Pro</h5>
               <p>$15/mo</p>
             </CardDetails>
           </Card>

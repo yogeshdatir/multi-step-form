@@ -93,6 +93,7 @@ export const PrimaryButton = styled.button`
   font-weight: 500;
   line-height: normal;
   margin-left: auto;
+  cursor: pointer;
 `;
 
 export const SecondaryButton = styled.button`
@@ -106,4 +107,5 @@ export const SecondaryButton = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
 `;
