@@ -17,14 +17,51 @@ import {
   SubPeriodSelector,
   ToggleLabel,
 } from './PlanSelectionForm.styled';
-import { useState } from 'react';
-import { IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
+import { ReactElement, useState } from 'react';
+import { IStepInteraction } from '../MultiStepForm';
+import { ReactComponent as ArcadeImage } from '../../assets/images/icon-arcade.svg';
+import { ReactComponent as AdvancedImage } from '../../assets/images/icon-advanced.svg';
+import { ReactComponent as ProImage } from '../../assets/images/icon-pro.svg';
 
-type IProps = { subscriptionPlans: ISubscriptionPlan[] } & IStepInteraction;
+export interface ISubscriptionPlan {
+  name: string;
+  image: ReactElement;
+  prices: {
+    monthly: number;
+    yearly: number;
+  };
+}
 
-const PlanSelectionForm = ({ next, goBack, subscriptionPlans }: IProps) => {
+const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
   const [isYearly, setIsYearly] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('arcade');
+
+  const subscriptionPlans: ISubscriptionPlan[] = [
+    {
+      name: 'arcade',
+      image: <ArcadeImage />,
+      prices: {
+        monthly: 9,
+        yearly: 90,
+      },
+    },
+    {
+      name: 'advanced',
+      image: <AdvancedImage />,
+      prices: {
+        monthly: 12,
+        yearly: 120,
+      },
+    },
+    {
+      name: 'pro',
+      image: <ProImage />,
+      prices: {
+        monthly: 15,
+        yearly: 150,
+      },
+    },
+  ];
 
   const handleChange = () => {
     setIsYearly(!isYearly);

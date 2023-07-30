@@ -3,9 +3,7 @@ import FormSidebar from './FormSidebar/FormSidebar';
 import { FormContainer } from './MultiStepForm.styled';
 import PlanSelectionForm from './PlanSelectionForm';
 import UserForm from './UserForm';
-import { ReactComponent as ArcadeImage } from '../assets/images/icon-arcade.svg';
-import { ReactComponent as AdvancedImage } from '../assets/images/icon-advanced.svg';
-import { ReactComponent as ProImage } from '../assets/images/icon-pro.svg';
+import AddOnsForm from './AddOnsForm';
 
 export interface IStepInteraction {
   next: () => void;
@@ -17,44 +15,8 @@ export interface IStep {
   element: ReactElement;
 }
 
-export interface ISubscriptionPlan {
-  name: string;
-  image: ReactElement;
-  prices: {
-    monthly: number;
-    yearly: number;
-  };
-}
-
 const MultiStepForm = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
-
-  const subscriptionPlans: ISubscriptionPlan[] = [
-    {
-      name: 'arcade',
-      image: <ArcadeImage />,
-      prices: {
-        monthly: 9,
-        yearly: 90,
-      },
-    },
-    {
-      name: 'advanced',
-      image: <AdvancedImage />,
-      prices: {
-        monthly: 12,
-        yearly: 120,
-      },
-    },
-    {
-      name: 'pro',
-      image: <ProImage />,
-      prices: {
-        monthly: 15,
-        yearly: 150,
-      },
-    },
-  ];
 
   const goBack = () => {
     setCurrentStepIndex((prevStepIndex: number) => {
@@ -74,13 +36,11 @@ const MultiStepForm = () => {
     { detail: 'your info', element: <UserForm next={next} /> },
     {
       detail: 'select plan',
-      element: (
-        <PlanSelectionForm
-          next={next}
-          goBack={goBack}
-          subscriptionPlans={subscriptionPlans}
-        />
-      ),
+      element: <PlanSelectionForm next={next} goBack={goBack} />,
+    },
+    {
+      detail: 'add-ons',
+      element: <AddOnsForm next={next} goBack={goBack} />,
     },
   ];
 
