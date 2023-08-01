@@ -17,6 +17,7 @@ const FormSidebar = ({ currentStepIndex, stepDetails }: IProps) => {
     <SidebarContainer>
       <StepList>
         {stepDetails.map((stepDetail: IStep['detail'], index: number) => {
+          if (!stepDetail) return null;
           return (
             <Step>
               <StepCircle aria-selected={currentStepIndex === index}>

@@ -4,6 +4,8 @@ import { FormContainer } from './MultiStepForm.styled';
 import PlanSelectionForm from './PlanSelectionForm';
 import UserForm from './UserForm';
 import AddOnsForm from './AddOnsForm';
+import InvoiceConfirmationForm from './InvoiceConfirmationForm';
+import ThankYouPage from './ThankYouPage';
 
 export interface IStepInteraction {
   next: () => void;
@@ -11,7 +13,7 @@ export interface IStepInteraction {
 }
 
 export interface IStep {
-  detail: string;
+  detail: string | undefined;
   element: ReactElement;
 }
 
@@ -41,6 +43,14 @@ const MultiStepForm = () => {
     {
       detail: 'add-ons',
       element: <AddOnsForm next={next} goBack={goBack} />,
+    },
+    {
+      detail: 'summary',
+      element: <InvoiceConfirmationForm next={next} goBack={goBack} />,
+    },
+    {
+      detail: undefined,
+      element: <ThankYouPage />,
     },
   ];
 

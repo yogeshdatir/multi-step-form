@@ -17,3 +17,10 @@ export const FormContent = styled.div`
   padding: 2.5rem 0 1rem 0;
   gap: 35px;
 `;
+
+export const ThankYouContent = styled(FormContent)`
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
