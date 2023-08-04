@@ -7,7 +7,12 @@ export const FormContainer = styled.div`
   min-width: 320px;
   min-height: 100vh;
   display: flex;
-  gap: 100px;
+`;
+
+export const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  flex: 1;
 `;
 
 export const FormContent = styled.div`

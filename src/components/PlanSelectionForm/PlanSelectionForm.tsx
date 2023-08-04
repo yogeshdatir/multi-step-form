@@ -87,6 +87,7 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
                 <Card
                   aria-selected={selectedPlan === name}
                   onClick={() => handlePlanSelection(name)}
+                  key={name}
                 >
                   {image}
                   <CardDetails>

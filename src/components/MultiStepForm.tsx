@@ -1,11 +1,7 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import FormSidebar from './FormSidebar/FormSidebar';
-import { FormContainer } from './MultiStepForm.styled';
-import PlanSelectionForm from './PlanSelectionForm';
-import UserForm from './UserForm';
-import AddOnsForm from './AddOnsForm';
-import InvoiceConfirmationForm from './InvoiceConfirmationForm';
-import ThankYouPage from './ThankYouPage';
+import { FormContainer, Main } from './MultiStepForm.styled';
+import useStepForm from '../hooks/useStepForm';
 
 export interface IStepInteraction {
   next: () => void;
@@ -18,52 +14,18 @@ export interface IStep {
 }
 
 const MultiStepForm = () => {
-  const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
-
-  const goBack = () => {
-    setCurrentStepIndex((prevStepIndex: number) => {
-      if (prevStepIndex > 0) return prevStepIndex - 1;
-      return prevStepIndex;
-    });
-  };
-
-  const next = () => {
-    setCurrentStepIndex((prevStepIndex: number) => {
-      if (prevStepIndex < steps.length - 1) return prevStepIndex + 1;
-      return prevStepIndex;
-    });
-  };
-
-  const steps: IStep[] = [
-    { detail: 'your info', element: <UserForm next={next} /> },
-    {
-      detail: 'select plan',
-      element: <PlanSelectionForm next={next} goBack={goBack} />,
-    },
-    {
-      detail: 'add-ons',
-      element: <AddOnsForm next={next} goBack={goBack} />,
-    },
-    {
-      detail: 'summary',
-      element: <InvoiceConfirmationForm next={next} goBack={goBack} />,
-    },
-    {
-      detail: undefined,
-      element: <ThankYouPage />,
-    },
-  ];
-
-  const stepDetails = steps.map((step: IStep) => step.detail);
+  const { currentStepIndex, stepDetails, goto, currentStepForm } =
+    useStepForm();
 
   return (
     <FormContainer>
       <FormSidebar
         currentStepIndex={currentStepIndex}
         stepDetails={stepDetails}
+        goto={goto}
       />
       {/* TODO: Add transition for step shuffling */}
-      {steps[currentStepIndex].element}
+      <Main>{currentStepForm}</Main>
     </FormContainer>
   );
 };

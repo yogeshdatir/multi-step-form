@@ -35,6 +35,7 @@ export const StepCircle = styled.span`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 1px;
+  cursor: pointer;
 
   display: flex;
   align-items: center;

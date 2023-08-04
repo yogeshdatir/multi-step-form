@@ -64,7 +64,7 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
       <FormBody>
         {addOns.map(({ title, description, prices }: IAddOn) => {
           return (
-            <AddOnCard>
+            <AddOnCard key="title">
               <input type="checkbox" />
               <AddOnDetail>
                 <AddOnTitle>{title}</AddOnTitle>
