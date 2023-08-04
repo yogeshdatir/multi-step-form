@@ -27,28 +27,28 @@ export const CardDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+`;
 
-  h5 {
-    color: var(--denim, #022959);
-    font-family: Ubuntu;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: capitalize;
-  }
+export const PlanTitle = styled.h5`
+  color: var(--denim, #022959);
+  font-family: Ubuntu;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+`;
 
-  p {
-    color: var(--grey, #9699aa);
-    font-feature-settings: 'clig' off, 'liga' off;
+export const PlanSubtitle = styled.p`
+  color: var(--grey, #9699aa);
+  font-feature-settings: 'clig' off, 'liga' off;
 
-    /* Body (M) */
-    font-family: Ubuntu;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+  /* Body (M) */
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const OfferText = styled.span`

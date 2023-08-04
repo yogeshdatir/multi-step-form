@@ -14,6 +14,8 @@ import {
   CardList,
   CheckBox,
   OfferText,
+  PlanSubtitle,
+  PlanTitle,
   Slider,
   SubPeriodSelector,
   ToggleLabel,
@@ -105,13 +107,13 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
                 >
                   {image}
                   <CardDetails>
-                    <h5>{name}</h5>
+                    <PlanTitle>{name}</PlanTitle>
                     {/* TODO: Add transition for prices */}
-                    <p>
+                    <PlanSubtitle>
                       {isYearly
                         ? `$${prices.yearly}/yr`
                         : `$${prices.monthly}/mo`}
-                    </p>
+                    </PlanSubtitle>
                     <OfferText>
                       {isYearly && offerDetails?.yearly
                         ? offerDetails.yearly

@@ -90,11 +90,11 @@ export const StyledCheckbox = styled.div<ICheckbox>`
   border: 1px solid var(--border-color, #d6d9e6);
   background: ${({ checked }: ICheckbox) =>
     checked ? `var(--purple, #483EFF)` : `var(--white, #FFF)`};
-  border-radius: 3px;
-  transition: all 150ms;
+  border-radius: 3.5px;
+  transition: all 250ms;
 
   ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px pink;
+    box-shadow: 0 0 0 3px var(--purple, #483eff);
   }
   .check-icon {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};

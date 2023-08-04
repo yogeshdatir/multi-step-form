@@ -109,3 +109,7 @@ export const SecondaryButton = styled.button`
   line-height: normal;
   cursor: pointer;
 `;
+
+export const TertiaryButton = styled(PrimaryButton)`
+  background: var(--purple, #483eff);
+`;
