@@ -5,5 +5,13 @@ import vitePluginRequire from 'vite-plugin-require';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), vitePluginRequire.default(), svgr()],
+  plugins: [
+    react({
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      },
+    }),
+    vitePluginRequire.default(),
+    svgr(),
+  ],
 });

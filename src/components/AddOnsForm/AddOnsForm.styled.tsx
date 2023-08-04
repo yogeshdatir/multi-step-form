@@ -54,3 +54,54 @@ export const AddOnPrice = styled.span`
   font-weight: 400;
   line-height: 20px; /* 142.857% */
 `;
+
+/**
+ * Reference for custom checkbox: https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
+ * Reference: https://github.com/emotion-js/emotion/issues/821#issuecomment-415697393
+ * Following emotion component will create an input element with type 'checkbox'
+ */
+export const HiddenCheckbox = styled.input`
+  // Hide checkbox visually but remain accessible to screen readers.
+  // Source: https://polished.js.org/docs/#hidevisually
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+HiddenCheckbox.defaultProps = { type: 'checkbox', readOnly: true };
+
+interface ICheckbox {
+  checked: boolean;
+}
+
+export const StyledCheckbox = styled.div<ICheckbox>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border-color, #d6d9e6);
+  background: ${({ checked }: ICheckbox) =>
+    checked ? `var(--purple, #483EFF)` : `var(--white, #FFF)`};
+  border-radius: 3px;
+  transition: all 150ms;
+
+  ${HiddenCheckbox}:focus + & {
+    box-shadow: 0 0 0 3px pink;
+  }
+  .check-icon {
+    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
+  }
+`;
+
+export const CheckboxContainer = styled.div`
+  display: inline-block;
+  vertical-align: middle;
+`;

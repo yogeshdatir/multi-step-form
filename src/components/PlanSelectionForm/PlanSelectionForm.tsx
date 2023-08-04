@@ -13,6 +13,7 @@ import {
   CardDetails,
   CardList,
   CheckBox,
+  OfferText,
   Slider,
   SubPeriodSelector,
   ToggleLabel,
@@ -30,6 +31,10 @@ export interface ISubscriptionPlan {
     monthly: number;
     yearly: number;
   };
+  offerDetails: {
+    monthly?: string;
+    yearly?: string;
+  };
 }
 
 const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
@@ -44,6 +49,9 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
         monthly: 9,
         yearly: 90,
       },
+      offerDetails: {
+        yearly: '2 months free',
+      },
     },
     {
       name: 'advanced',
@@ -52,6 +60,9 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
         monthly: 12,
         yearly: 120,
       },
+      offerDetails: {
+        yearly: '2 months free',
+      },
     },
     {
       name: 'pro',
@@ -59,6 +70,9 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
       prices: {
         monthly: 15,
         yearly: 150,
+      },
+      offerDetails: {
+        yearly: '2 months free',
       },
     },
   ];
@@ -82,7 +96,7 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
       <FormBody style={{ gap: '2rem' }}>
         <CardList>
           {subscriptionPlans.map(
-            ({ name, image, prices }: ISubscriptionPlan) => {
+            ({ name, image, prices, offerDetails }: ISubscriptionPlan) => {
               return (
                 <Card
                   aria-selected={selectedPlan === name}
@@ -98,6 +112,11 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
                         ? `$${prices.yearly}/yr`
                         : `$${prices.monthly}/mo`}
                     </p>
+                    <OfferText>
+                      {isYearly && offerDetails?.yearly
+                        ? offerDetails.yearly
+                        : offerDetails?.monthly && offerDetails.monthly}
+                    </OfferText>
                   </CardDetails>
                 </Card>
               );

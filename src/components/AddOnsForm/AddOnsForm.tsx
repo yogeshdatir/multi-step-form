@@ -15,9 +15,15 @@ import {
   AddOnDetail,
   AddOnPrice,
   AddOnTitle,
+  CheckboxContainer,
+  HiddenCheckbox,
+  StyledCheckbox,
 } from './AddOnsForm.styled';
+import { ReactComponent as CheckIcon } from '../../assets/images/icon-checkmark.svg';
+import { useState } from 'react';
 
 interface IAddOn {
+  id: number;
   title: string;
   description: string;
   prices: {
@@ -29,6 +35,7 @@ interface IAddOn {
 const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
   const addOns: IAddOn[] = [
     {
+      id: 1,
       title: 'Online service',
       description: 'Access to multiplayer games',
       prices: {
@@ -37,6 +44,7 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
       },
     },
     {
+      id: 2,
       title: 'Larger storage',
       description: 'Extra 1TB of cloud save',
       prices: {
@@ -45,6 +53,7 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
       },
     },
     {
+      id: 3,
       title: 'Customizable profile',
       description: 'Custom theme on your profile',
       prices: {
@@ -53,6 +62,7 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
       },
     },
   ];
+  const [selectedAddOnIds, setSelectedAddOnIds] = useState<number[]>([]);
   return (
     <FormContent>
       <FormHeader>
@@ -62,18 +72,38 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
         </FormSubtitle>
       </FormHeader>
       <FormBody>
-        {addOns.map(({ title, description, prices }: IAddOn) => {
-          return (
-            <AddOnCard key="title">
-              <input type="checkbox" />
-              <AddOnDetail>
-                <AddOnTitle>{title}</AddOnTitle>
-                <AddOnDescription>{description}</AddOnDescription>
-              </AddOnDetail>
-              <AddOnPrice>{`+$${prices.monthly}/mo`}</AddOnPrice>
-            </AddOnCard>
-          );
-        })}
+        {addOns.map(
+          ({ id, title, description, prices }: IAddOn, index: number) => {
+            const isSelected: boolean = selectedAddOnIds.includes(id);
+            return (
+              <AddOnCard
+                key={index}
+                onClick={() => {
+                  if (isSelected)
+                    setSelectedAddOnIds((prevState) => [
+                      ...prevState.filter(
+                        (selectedAddOnIds) => selectedAddOnIds !== id
+                      ),
+                    ]);
+                  else setSelectedAddOnIds((prevState) => [...prevState, id]);
+                }}
+                aria-selected={isSelected}
+              >
+                <CheckboxContainer>
+                  <HiddenCheckbox checked={isSelected} />
+                  <StyledCheckbox checked={isSelected}>
+                    <CheckIcon className="check-icon" />
+                  </StyledCheckbox>
+                </CheckboxContainer>
+                <AddOnDetail>
+                  <AddOnTitle>{title}</AddOnTitle>
+                  <AddOnDescription>{description}</AddOnDescription>
+                </AddOnDetail>
+                <AddOnPrice>{`+$${prices.monthly}/mo`}</AddOnPrice>
+              </AddOnCard>
+            );
+          }
+        )}
       </FormBody>
       <FormFooter>
         <SecondaryButton onClick={goBack}>Go Back</SecondaryButton>

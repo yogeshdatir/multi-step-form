@@ -14,7 +14,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 138px;
-  height: 160px;
+  gap: 39px;
   cursor: pointer;
 
   &[aria-selected='true'] {
@@ -49,6 +49,18 @@ export const CardDetails = styled.div`
     font-weight: 400;
     line-height: normal;
   }
+`;
+
+export const OfferText = styled.span`
+  color: var(--denim, #022959);
+  font-feature-settings: 'clig' off, 'liga' off;
+
+  /* Body (S) */
+  font-family: Ubuntu;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const SubPeriodSelector = styled.div`
