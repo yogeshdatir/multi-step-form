@@ -23,7 +23,10 @@ const INITIAL_FORM_DATA: IFormData = {
   name: '',
   email: '',
   phone: '',
-  selectedPlan: {},
+  selectedPlan: {
+    id: undefined,
+    isYearly: false,
+  },
   SelectedAddOns: [],
 };
 

@@ -20,23 +20,36 @@ import {
   SubPeriodSelector,
   ToggleLabel,
 } from './PlanSelectionForm.styled';
-import { useState } from 'react';
 import { IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
 
 const PlanSelectionForm = ({
   next,
   goBack,
   subscriptionPlans,
+  formData,
+  setFormData,
 }: IStepInteraction) => {
-  const [isYearly, setIsYearly] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState('arcade');
-
-  const handleChange = () => {
-    setIsYearly(!isYearly);
+  const {
+    selectedPlan: { id: selectedPlanId, isYearly },
+  } = formData;
+  const handlePeriodChange = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      selectedPlan: {
+        ...prevFormData.selectedPlan,
+        isYearly: !prevFormData.selectedPlan.isYearly,
+      },
+    }));
   };
 
-  const handlePlanSelection = (clickedPlan: string) => {
-    setSelectedPlan(clickedPlan);
+  const handlePlanSelection = (clickedPlanId: number) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      selectedPlan: {
+        ...prevFormData.selectedPlan,
+        id: clickedPlanId,
+      },
+    }));
   };
 
   return (
@@ -50,11 +63,11 @@ const PlanSelectionForm = ({
       <FormBody style={{ gap: '2rem' }}>
         <CardList>
           {subscriptionPlans?.map(
-            ({ name, image, prices, offerDetails }: ISubscriptionPlan) => {
+            ({ id, name, image, prices, offerDetails }: ISubscriptionPlan) => {
               return (
                 <Card
-                  aria-selected={selectedPlan === name}
-                  onClick={() => handlePlanSelection(name)}
+                  aria-selected={selectedPlanId === id}
+                  onClick={() => handlePlanSelection(id)}
                   key={name}
                 >
                   {image}
@@ -83,7 +96,7 @@ const PlanSelectionForm = ({
             <CheckBox
               type="checkbox"
               checked={isYearly}
-              onChange={handleChange}
+              onChange={handlePeriodChange}
             />
             <Slider />
           </ToggleLabel>

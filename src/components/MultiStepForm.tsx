@@ -20,6 +20,7 @@ export interface IStep {
   element: ReactElement;
 }
 export interface ISubscriptionPlan {
+  id: number;
   name: string;
   image: ReactElement;
   prices: {
@@ -74,6 +75,7 @@ const addOns: IAddOn[] = [
 const MultiStepForm = () => {
   const subscriptionPlans: ISubscriptionPlan[] = [
     {
+      id: 100,
       name: 'arcade',
       image: <ArcadeImage />,
       prices: {
@@ -85,6 +87,7 @@ const MultiStepForm = () => {
       },
     },
     {
+      id: 101,
       name: 'advanced',
       image: <AdvancedImage />,
       prices: {
@@ -96,6 +99,7 @@ const MultiStepForm = () => {
       },
     },
     {
+      id: 102,
       name: 'pro',
       image: <ProImage />,
       prices: {
