@@ -20,10 +20,35 @@ import {
   StyledCheckbox,
 } from './AddOnsForm.styled';
 import { ReactComponent as CheckIcon } from '../../assets/images/icon-checkmark.svg';
-import { useState } from 'react';
 
-const AddOnsForm = ({ next, goBack, addOns }: IStepInteraction) => {
-  const [selectedAddOnIds, setSelectedAddOnIds] = useState<number[]>([]);
+const AddOnsForm = ({
+  next,
+  goBack,
+  addOns,
+  formData,
+  setFormData,
+}: IStepInteraction) => {
+  const {
+    selectedAddOnIds,
+    selectedPlan: { isYearly },
+  } = formData;
+  const handleAdd = (isSelected: boolean, id: number) => {
+    if (isSelected)
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        selectedAddOnIds: [
+          ...selectedAddOnIds.filter(
+            (selectedAddOnId) => selectedAddOnId !== id
+          ),
+        ],
+      }));
+    else
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        selectedAddOnIds: [...selectedAddOnIds, id],
+      }));
+  };
+
   return (
     <FormContent>
       <FormHeader>
@@ -39,15 +64,7 @@ const AddOnsForm = ({ next, goBack, addOns }: IStepInteraction) => {
             return (
               <AddOnCard
                 key={index}
-                onClick={() => {
-                  if (isSelected)
-                    setSelectedAddOnIds((prevState) => [
-                      ...prevState.filter(
-                        (selectedAddOnIds) => selectedAddOnIds !== id
-                      ),
-                    ]);
-                  else setSelectedAddOnIds((prevState) => [...prevState, id]);
-                }}
+                onClick={() => handleAdd(isSelected, id)}
                 aria-selected={isSelected}
               >
                 <CheckboxContainer>
@@ -60,7 +77,11 @@ const AddOnsForm = ({ next, goBack, addOns }: IStepInteraction) => {
                   <AddOnTitle>{title}</AddOnTitle>
                   <AddOnDescription>{description}</AddOnDescription>
                 </AddOnDetail>
-                <AddOnPrice>{`+$${prices.monthly}/mo`}</AddOnPrice>
+                <AddOnPrice>
+                  {isYearly
+                    ? `+$${prices.yearly}/yr`
+                    : `+$${prices.monthly}/mo`}
+                </AddOnPrice>
               </AddOnCard>
             );
           }

@@ -15,8 +15,8 @@ export interface IFormData {
   name: string;
   email: string;
   phone: string;
-  selectedPlan: { id?: number; isYearly?: boolean };
-  SelectedAddOns: number[];
+  selectedPlan: { id: number | undefined; isYearly: boolean | undefined };
+  selectedAddOnIds: number[];
 }
 
 const INITIAL_FORM_DATA: IFormData = {
@@ -27,7 +27,7 @@ const INITIAL_FORM_DATA: IFormData = {
     id: undefined,
     isYearly: false,
   },
-  SelectedAddOns: [],
+  selectedAddOnIds: [],
 };
 
 const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
