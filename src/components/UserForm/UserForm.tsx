@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react';
 import { IStepInteraction } from '../MultiStepForm';
 import { FormContent } from '../MultiStepForm.styled';
 import {
@@ -12,7 +13,18 @@ import {
   PrimaryButton,
 } from './UserForm.styled';
 
-const UserForm = ({ next }: { next: IStepInteraction['next'] }) => {
+const UserForm = ({
+  next,
+  formData,
+  setFormData,
+}: Pick<IStepInteraction, 'next' | 'formData' | 'setFormData'>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <FormContent>
       <FormHeader>
@@ -24,15 +36,33 @@ const UserForm = ({ next }: { next: IStepInteraction['next'] }) => {
       <FormBody>
         <FormField>
           <FieldLabel>Name</FieldLabel>
-          <FieldInput placeholder="e.g. Stephen King" />
+          <FieldInput
+            type="text"
+            name="name"
+            placeholder="e.g. Stephen King"
+            value={formData.name}
+            onChange={handleChange}
+          />
         </FormField>
         <FormField>
           <FieldLabel>Email Address</FieldLabel>
-          <FieldInput placeholder="e.g. stephenking@lorem.com" />
+          <FieldInput
+            type="email"
+            name="email"
+            placeholder="e.g. stephenking@lorem.com"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </FormField>
         <FormField>
           <FieldLabel>Phone Number</FieldLabel>
-          <FieldInput placeholder="e.g. +1 234 567 890" />
+          <FieldInput
+            type="tel"
+            name="phone"
+            placeholder="e.g. +1 234 567 890"
+            value={formData.phone}
+            onChange={handleChange}
+          />
         </FormField>
       </FormBody>
       <FormFooter>

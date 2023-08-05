@@ -54,7 +54,12 @@ const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
   };
 
   const steps: IStep[] = [
-    { detail: 'your info', element: <UserForm next={next} /> },
+    {
+      detail: 'your info',
+      element: (
+        <UserForm next={next} formData={formData} setFormData={setFormData} />
+      ),
+    },
     {
       detail: 'select plan',
       element: (
