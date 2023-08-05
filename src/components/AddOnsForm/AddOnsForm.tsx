@@ -1,4 +1,4 @@
-import { IStepInteraction } from '../MultiStepForm';
+import { IAddOn, IStepInteraction } from '../MultiStepForm';
 import { FormContent } from '../MultiStepForm.styled';
 import {
   FormBody,
@@ -22,46 +22,7 @@ import {
 import { ReactComponent as CheckIcon } from '../../assets/images/icon-checkmark.svg';
 import { useState } from 'react';
 
-interface IAddOn {
-  id: number;
-  title: string;
-  description: string;
-  prices: {
-    monthly: number;
-    yearly: number;
-  };
-}
-
-const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
-  const addOns: IAddOn[] = [
-    {
-      id: 1,
-      title: 'Online service',
-      description: 'Access to multiplayer games',
-      prices: {
-        monthly: 1,
-        yearly: 10,
-      },
-    },
-    {
-      id: 2,
-      title: 'Larger storage',
-      description: 'Extra 1TB of cloud save',
-      prices: {
-        monthly: 2,
-        yearly: 20,
-      },
-    },
-    {
-      id: 3,
-      title: 'Customizable profile',
-      description: 'Custom theme on your profile',
-      prices: {
-        monthly: 2,
-        yearly: 20,
-      },
-    },
-  ];
+const AddOnsForm = ({ next, goBack, addOns }: IStepInteraction) => {
   const [selectedAddOnIds, setSelectedAddOnIds] = useState<number[]>([]);
   return (
     <FormContent>
@@ -72,7 +33,7 @@ const AddOnsForm = ({ next, goBack }: IStepInteraction) => {
         </FormSubtitle>
       </FormHeader>
       <FormBody>
-        {addOns.map(
+        {addOns?.map(
           ({ id, title, description, prices }: IAddOn, index: number) => {
             const isSelected: boolean = selectedAddOnIds.includes(id);
             return (

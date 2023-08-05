@@ -20,64 +20,16 @@ import {
   SubPeriodSelector,
   ToggleLabel,
 } from './PlanSelectionForm.styled';
-import { ReactElement, useState } from 'react';
-import { IStepInteraction } from '../MultiStepForm';
-import { ReactComponent as ArcadeImage } from '../../assets/images/icon-arcade.svg';
-import { ReactComponent as AdvancedImage } from '../../assets/images/icon-advanced.svg';
-import { ReactComponent as ProImage } from '../../assets/images/icon-pro.svg';
+import { useState } from 'react';
+import { IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
 
-export interface ISubscriptionPlan {
-  name: string;
-  image: ReactElement;
-  prices: {
-    monthly: number;
-    yearly: number;
-  };
-  offerDetails: {
-    monthly?: string;
-    yearly?: string;
-  };
-}
-
-const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
+const PlanSelectionForm = ({
+  next,
+  goBack,
+  subscriptionPlans,
+}: IStepInteraction) => {
   const [isYearly, setIsYearly] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('arcade');
-
-  const subscriptionPlans: ISubscriptionPlan[] = [
-    {
-      name: 'arcade',
-      image: <ArcadeImage />,
-      prices: {
-        monthly: 9,
-        yearly: 90,
-      },
-      offerDetails: {
-        yearly: '2 months free',
-      },
-    },
-    {
-      name: 'advanced',
-      image: <AdvancedImage />,
-      prices: {
-        monthly: 12,
-        yearly: 120,
-      },
-      offerDetails: {
-        yearly: '2 months free',
-      },
-    },
-    {
-      name: 'pro',
-      image: <ProImage />,
-      prices: {
-        monthly: 15,
-        yearly: 150,
-      },
-      offerDetails: {
-        yearly: '2 months free',
-      },
-    },
-  ];
 
   const handleChange = () => {
     setIsYearly(!isYearly);
@@ -97,7 +49,7 @@ const PlanSelectionForm = ({ next, goBack }: IStepInteraction) => {
       </FormHeader>
       <FormBody style={{ gap: '2rem' }}>
         <CardList>
-          {subscriptionPlans.map(
+          {subscriptionPlans?.map(
             ({ name, image, prices, offerDetails }: ISubscriptionPlan) => {
               return (
                 <Card

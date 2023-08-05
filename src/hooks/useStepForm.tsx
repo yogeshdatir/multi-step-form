@@ -1,13 +1,36 @@
 import { useState } from 'react';
 import AddOnsForm from '../components/AddOnsForm';
 import InvoiceConfirmationForm from '../components/InvoiceConfirmationForm';
-import { IStep } from '../components/MultiStepForm';
+import { IAddOn, IStep, ISubscriptionPlan } from '../components/MultiStepForm';
 import PlanSelectionForm from '../components/PlanSelectionForm';
 import ThankYouPage from '../components/ThankYouPage';
 import UserForm from '../components/UserForm';
 
-const useStepForm = () => {
+interface IProps {
+  subscriptionPlans: ISubscriptionPlan[];
+  addOns: IAddOn[];
+}
+
+export interface IFormData {
+  name: string;
+  email: string;
+  phone: string;
+  selectedPlan: { id?: number; isYearly?: boolean };
+  SelectedAddOns: number[];
+}
+
+const INITIAL_FORM_DATA: IFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  selectedPlan: {},
+  SelectedAddOns: [],
+};
+
+const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   const goBack = () => {
     setCurrentStepIndex((prevStepIndex: number) => {
@@ -34,15 +57,38 @@ const useStepForm = () => {
     { detail: 'your info', element: <UserForm next={next} /> },
     {
       detail: 'select plan',
-      element: <PlanSelectionForm next={next} goBack={goBack} />,
+      element: (
+        <PlanSelectionForm
+          next={next}
+          goBack={goBack}
+          subscriptionPlans={subscriptionPlans}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      ),
     },
     {
       detail: 'add-ons',
-      element: <AddOnsForm next={next} goBack={goBack} />,
+      element: (
+        <AddOnsForm
+          next={next}
+          goBack={goBack}
+          addOns={addOns}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      ),
     },
     {
       detail: 'summary',
-      element: <InvoiceConfirmationForm next={next} goBack={goBack} />,
+      element: (
+        <InvoiceConfirmationForm
+          next={next}
+          goBack={goBack}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      ),
     },
     {
       detail: undefined,
