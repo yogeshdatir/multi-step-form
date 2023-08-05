@@ -113,3 +113,19 @@ export const SecondaryButton = styled.button`
 export const TertiaryButton = styled(PrimaryButton)`
   background: var(--purple, #483eff);
 `;
+
+export const LinkButton = styled(SecondaryButton)`
+  color: var(--grey, #9699aa);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  text-decoration-line: underline;
+
+  padding: 0;
+
+  :hover {
+    color: var(--purple, #483eff);
+  }
+`;

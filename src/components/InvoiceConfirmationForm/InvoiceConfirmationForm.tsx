@@ -1,10 +1,8 @@
+import { IFormData } from '../../hooks/useStepForm';
 import { AddOnDescription } from '../AddOnsForm/AddOnsForm.styled';
-import { IStepInteraction } from '../MultiStepForm';
+import { IAddOn, IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
 import { FormContent } from '../MultiStepForm.styled';
-import {
-  PlanSubtitle,
-  PlanTitle,
-} from '../PlanSelectionForm/PlanSelectionForm.styled';
+import { PlanTitle } from '../PlanSelectionForm/PlanSelectionForm.styled';
 import {
   FormHeader,
   FormTitle,
@@ -14,6 +12,7 @@ import {
   SecondaryButton,
   FieldLabel,
   TertiaryButton,
+  LinkButton,
 } from '../UserForm/UserForm.styled';
 import {
   AddOnRow,
@@ -25,7 +24,35 @@ import {
   TotalRow,
 } from './InvoiceConfirmationForm.styled';
 
-const InvoiceConfirmationForm = ({ next, goBack }: IStepInteraction) => {
+interface IProps extends Omit<IStepInteraction, 'formData' | 'setFormData'> {
+  goto: (stepIndex: number) => void;
+  selectedPlan: ISubscriptionPlan | undefined;
+  selectedAddOns: IAddOn[];
+  isYearly: IFormData['selectedPlan']['isYearly'];
+}
+
+const InvoiceConfirmationForm = ({
+  next,
+  goBack,
+  goto,
+  selectedPlan,
+  selectedAddOns,
+  isYearly,
+}: IProps) => {
+  const addOnTotal = selectedAddOns.reduce((accumulator, selectedAddOn) => {
+    if (isYearly) {
+      return accumulator + selectedAddOn.prices.yearly;
+    } else {
+      return accumulator + selectedAddOn.prices.monthly;
+    }
+  }, 0);
+
+  const planTotal =
+    (isYearly ? selectedPlan?.prices.yearly : selectedPlan?.prices.monthly) ||
+    0;
+
+  const total = planTotal + addOnTotal;
+
   return (
     <FormContent>
       <FormHeader>
@@ -38,24 +65,36 @@ const InvoiceConfirmationForm = ({ next, goBack }: IStepInteraction) => {
         <Cart>
           <SelectedPlan>
             <RightPane>
-              <PlanTitle>Arcade (Monthly)</PlanTitle>
-              <PlanSubtitle>Change</PlanSubtitle>
+              <PlanTitle>
+                {selectedPlan?.name} ({isYearly ? 'yearly' : 'monthly'})
+              </PlanTitle>
+              <LinkButton onClick={() => goto(1)}>Change</LinkButton>
             </RightPane>
-            <PlanTitle>$9/mo</PlanTitle>
+            <PlanTitle>
+              {isYearly
+                ? `$${selectedPlan?.prices.yearly}/yr`
+                : `$${selectedPlan?.prices.monthly}/mo`}
+            </PlanTitle>
           </SelectedPlan>
           <Divider />
-          <AddOnRow>
-            <AddOnDescription>Online service</AddOnDescription>
-            <FieldLabel>$1/mo</FieldLabel>
-          </AddOnRow>
-          <AddOnRow>
-            <AddOnDescription>Larger storage</AddOnDescription>
-            <FieldLabel>$2/mo</FieldLabel>
-          </AddOnRow>
+          {selectedAddOns.map((selectedAddOn: IAddOn) => {
+            return (
+              <AddOnRow>
+                <AddOnDescription>{selectedAddOn.title}</AddOnDescription>
+                <FieldLabel>
+                  {isYearly
+                    ? `$${selectedAddOn?.prices.yearly}/yr`
+                    : `$${selectedAddOn?.prices.monthly}/mo`}
+                </FieldLabel>
+              </AddOnRow>
+            );
+          })}
         </Cart>
         <TotalRow>
           <AddOnDescription>Total (per month)</AddOnDescription>
-          <TotalPrice>+$12/mo</TotalPrice>
+          <TotalPrice>
+            +${total}/{isYearly ? 'yr' : 'mo'}
+          </TotalPrice>
         </TotalRow>
       </FormBody>
       <FormFooter>

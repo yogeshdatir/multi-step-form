@@ -93,8 +93,15 @@ const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
         <InvoiceConfirmationForm
           next={next}
           goBack={goBack}
-          formData={formData}
-          setFormData={setFormData}
+          goto={goto}
+          selectedPlan={subscriptionPlans.find(
+            (subscriptionPlan: ISubscriptionPlan) =>
+              subscriptionPlan.id === formData.selectedPlan.id
+          )}
+          selectedAddOns={addOns.filter((addOn: IAddOn) =>
+            formData.selectedAddOnIds.includes(addOn.id)
+          )}
+          isYearly={formData.selectedPlan.isYearly}
         />
       ),
     },
