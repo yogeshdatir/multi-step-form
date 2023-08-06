@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import FormSidebar from './FormSidebar/FormSidebar';
 import { FormContainer, Main } from './MultiStepForm.styled';
-import useStepForm, { IFormData } from '../hooks/useStepForm';
+import useStepForm, { IFormData } from '../utils/hooks/useStepForm';
 import { ReactComponent as ArcadeImage } from '../assets/images/icon-arcade.svg';
 import { ReactComponent as AdvancedImage } from '../assets/images/icon-advanced.svg';
 import { ReactComponent as ProImage } from '../assets/images/icon-pro.svg';

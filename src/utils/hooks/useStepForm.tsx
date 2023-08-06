@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import AddOnsForm from '../components/AddOnsForm';
-import InvoiceConfirmationForm from '../components/InvoiceConfirmationForm';
-import { IAddOn, IStep, ISubscriptionPlan } from '../components/MultiStepForm';
-import PlanSelectionForm from '../components/PlanSelectionForm';
-import ThankYouPage from '../components/ThankYouPage';
-import UserForm from '../components/UserForm';
+import AddOnsForm from '../../components/AddOnsForm';
+import InvoiceConfirmationForm from '../../components/InvoiceConfirmationForm';
+import {
+  IAddOn,
+  IStep,
+  ISubscriptionPlan,
+} from '../../components/MultiStepForm';
+import PlanSelectionForm from '../../components/PlanSelectionForm';
+import ThankYouPage from '../../components/ThankYouPage';
+import UserForm from '../../components/UserForm';
 
 interface IProps {
   subscriptionPlans: ISubscriptionPlan[];
@@ -17,6 +21,12 @@ export interface IFormData {
   phone: string;
   selectedPlan: { id: number | undefined; isYearly: boolean | undefined };
   selectedAddOnIds: number[];
+}
+
+export interface IFormErrors {
+  name: string;
+  email: string;
+  phone: string;
 }
 
 const INITIAL_FORM_DATA: IFormData = {
@@ -34,6 +44,12 @@ const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+
+  const [formErrors, setFormErrors] = useState<IFormErrors>({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
   const goBack = () => {
     setCurrentStepIndex((prevStepIndex: number) => {
@@ -60,7 +76,13 @@ const useStepForm = ({ subscriptionPlans, addOns }: IProps) => {
     {
       detail: 'your info',
       element: (
-        <UserForm next={next} formData={formData} setFormData={setFormData} />
+        <UserForm
+          next={next}
+          formData={formData}
+          setFormData={setFormData}
+          formErrors={formErrors}
+          setFormErrors={setFormErrors}
+        />
       ),
     },
     {

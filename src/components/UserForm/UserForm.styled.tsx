@@ -44,7 +44,13 @@ export const FormField = styled.div`
   gap: 8px;
 `;
 
-export const FieldLabel = styled.p`
+export const FieldLabel = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const Label = styled.p`
   color: var(--denim, #022959);
   font-feature-settings: 'clig' off, 'liga' off;
 
@@ -56,6 +62,16 @@ export const FieldLabel = styled.p`
   line-height: normal;
 `;
 
+export const FieldError = styled.span`
+  color: var(--red-errors, #ee374a);
+  text-align: right;
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+
 export const FieldInput = styled.input`
   border-radius: 8px;
   border: 1px solid var(--border-color, #d6d9e6);
@@ -63,6 +79,14 @@ export const FieldInput = styled.input`
   height: 48px;
   padding: 0 1rem;
   width: 100%;
+  outline: none;
+
+  color: var(--denim, #022959);
+  font-family: Ubuntu;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 
   ::placeholder {
     color: var(--grey, #9699aa);
@@ -72,6 +96,14 @@ export const FieldInput = styled.input`
     font-style: normal;
     font-weight: 500;
     line-height: 25px; /* 156.25% */
+  }
+
+  :focus {
+    border: 1px solid var(--purple, #483eff);
+  }
+
+  &[aria-invalid='true'] {
+    border: 1px solid var(--red-errors, #ee374a);
   }
 `;
 

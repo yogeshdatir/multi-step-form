@@ -1,4 +1,4 @@
-import { IFormData } from '../../hooks/useStepForm';
+import { IFormData } from '../../utils/hooks/useStepForm';
 import { AddOnDescription } from '../AddOnsForm/AddOnsForm.styled';
 import { IAddOn, IStepInteraction, ISubscriptionPlan } from '../MultiStepForm';
 import { FormContent } from '../MultiStepForm.styled';
