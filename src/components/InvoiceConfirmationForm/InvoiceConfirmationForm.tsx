@@ -10,9 +10,9 @@ import {
   FormBody,
   FormFooter,
   SecondaryButton,
-  FieldLabel,
   TertiaryButton,
   LinkButton,
+  Label,
 } from '../UserForm/UserForm.styled';
 import {
   AddOnRow,
@@ -79,13 +79,13 @@ const InvoiceConfirmationForm = ({
           <Divider />
           {selectedAddOns.map((selectedAddOn: IAddOn) => {
             return (
-              <AddOnRow>
+              <AddOnRow key={selectedAddOn.title}>
                 <AddOnDescription>{selectedAddOn.title}</AddOnDescription>
-                <FieldLabel>
+                <Label>
                   {isYearly
                     ? `$${selectedAddOn?.prices.yearly}/yr`
                     : `$${selectedAddOn?.prices.monthly}/mo`}
-                </FieldLabel>
+                </Label>
               </AddOnRow>
             );
           })}

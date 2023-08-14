@@ -52,21 +52,42 @@ const UserForm = ({
     }));
   };
 
+  const validateFields = (fieldNames: string[] = []) => {
+    let _fieldName = [...fieldNames];
+    if (!_fieldName.length) {
+      _fieldName = Object.keys(formData).filter(
+        (fieldName) => !!validatorMap[fieldName as keyof IValidateFields]
+      );
+    }
+
+    let _formErrors = { ...formErrors };
+    _fieldName.forEach((field) => {
+      const _fieldValue = formData[field as keyof IValidateFields];
+      const errorString = _fieldValue
+        ? validatorMap[field as keyof IValidateFields](_fieldValue)
+          ? ``
+          : `Invalid ${field}`
+        : REQUIRED_FIELD_ERROR;
+
+      _formErrors = { ..._formErrors, [field]: errorString };
+    });
+
+    setFormErrors(_formErrors);
+
+    return !Object.values(_formErrors).filter((err) => err !== '').length;
+  };
+
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const fieldName: string = e.target.name;
 
-    const _fieldValue = formData[fieldName as keyof IValidateFields];
+    validateFields([fieldName]);
+  };
 
-    const errorString = _fieldValue
-      ? validatorMap[fieldName as keyof IValidateFields](_fieldValue)
-        ? ``
-        : `Invalid ${fieldName}`
-      : REQUIRED_FIELD_ERROR;
+  const isUserDataValid = !Object.values(formErrors).filter((err) => err !== '')
+    .length;
 
-    setFormErrors((prevFormErrors: IFormErrors) => ({
-      ...prevFormErrors,
-      [fieldName]: errorString,
-    }));
+  const handleSubmit = () => {
+    if (validateFields()) next();
   };
 
   return (
@@ -125,7 +146,9 @@ const UserForm = ({
         </FormField>
       </FormBody>
       <FormFooter>
-        <PrimaryButton onClick={next}>Next Step</PrimaryButton>
+        <PrimaryButton onClick={handleSubmit} disabled={!isUserDataValid}>
+          Next Step
+        </PrimaryButton>
       </FormFooter>
     </FormContent>
   );
