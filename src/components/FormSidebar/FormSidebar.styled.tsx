@@ -11,10 +11,23 @@ export const SidebarContainer = styled.div`
   flex-direction: column;
 `;
 
+export const MobileSidebarContainer = styled(SidebarContainer)`
+  width: 100%;
+  background: transparent;
+  padding: 1rem 0 2.5rem 0;
+`;
+
 export const StepList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`;
+
+export const MobileStepList = styled(StepList)`
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
 `;
 
 export const Step = styled.div`

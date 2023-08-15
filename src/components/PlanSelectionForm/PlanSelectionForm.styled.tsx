@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 export const CardList = styled.div`
   display: flex;
   gap: 18px;
+
+  @media only screen and (max-width: 376px) {
+    flex-direction: column;
+  }
 `;
 
 export const Card = styled.div`
@@ -20,6 +24,15 @@ export const Card = styled.div`
   &[aria-selected='true'] {
     border: 1px solid var(--purple, #483eff);
     background: var(--very-light-grey, #f8f9ff);
+  }
+
+  @media only screen and (max-width: 376px) {
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
@@ -108,14 +121,6 @@ export const ToggleLabel = styled.label`
   color: grey;
 
   width: max-content;
-
-  @media (max-width: 540px) {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #848bab;
-  }
 `;
 
 export const CheckBox = styled.input`

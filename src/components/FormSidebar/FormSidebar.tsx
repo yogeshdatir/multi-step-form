@@ -1,3 +1,4 @@
+import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
 import { IStep } from '../MultiStepForm';
 import {
   StepCircle,
@@ -5,6 +6,8 @@ import {
   StepList,
   Step,
   StepDetails,
+  MobileSidebarContainer,
+  MobileStepList,
 } from './FormSidebar.styled';
 
 interface IProps {
@@ -14,6 +17,30 @@ interface IProps {
 }
 
 const FormSidebar = ({ currentStepIndex, stepDetails, goto }: IProps) => {
+  const isMobileScreen = useMediaQuery('(max-width: 376px)');
+
+  if (isMobileScreen) {
+    return (
+      <MobileSidebarContainer>
+        <MobileStepList>
+          {stepDetails.map((stepDetail: IStep['detail'], index: number) => {
+            if (!stepDetail) return null;
+            return (
+              <Step key={index}>
+                <StepCircle
+                  aria-selected={currentStepIndex === index}
+                  onClick={() => goto(index)}
+                >
+                  {index + 1}
+                </StepCircle>
+              </Step>
+            );
+          })}
+        </MobileStepList>
+      </MobileSidebarContainer>
+    );
+  }
+
   return (
     <SidebarContainer>
       <StepList>

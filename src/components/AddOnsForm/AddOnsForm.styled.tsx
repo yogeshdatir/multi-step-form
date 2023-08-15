@@ -14,6 +14,11 @@ export const AddOnCard = styled.div`
     border: 1px solid var(--purple, #483eff);
     background: var(--very-light-grey, #f8f9ff);
   }
+
+  @media only screen and (max-width: 376px) {
+    padding: 1rem;
+    gap: 1rem;
+  }
 `;
 
 export const AddOnDetail = styled.div`

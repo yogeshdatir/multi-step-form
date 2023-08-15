@@ -111,6 +111,26 @@ export const FormFooter = styled.div`
   margin-top: auto;
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: 376px) {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    margin: 0;
+    background: var(--white, #fff);
+    box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const MobileFormFooter = styled.div`
+  width: 100%;
+  position: static;
+  bottom: 0;
+  padding: 1rem;
+  background: var(--white, #fff);
+  box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
 `;
 
 export const PrimaryButton = styled.button`

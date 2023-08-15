@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import mobileSidebarBg from '../assets/images/bg-sidebar-mobile.svg';
 
 export const FormContainer = styled.div`
   padding: 1rem;
@@ -9,10 +10,24 @@ export const FormContainer = styled.div`
   display: flex;
 `;
 
+export const MobileFormContainer = styled(FormContainer)`
+  background: top / contain no-repeat url(${mobileSidebarBg}) var(--bg, #eff5ff);
+  flex-direction: column;
+  margin-bottom: 82px;
+  padding-bottom: 1.5rem;
+`;
+
 export const Main = styled.div`
   display: flex;
   justify-content: center;
   flex: 1;
+`;
+
+export const MobileMain = styled(Main)`
+  border-radius: 10px;
+  background: var(--white, #fff);
+  box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1.5rem;
 `;
 
 export const FormContent = styled.div`
@@ -21,6 +36,10 @@ export const FormContent = styled.div`
   flex-direction: column;
   padding: 2.5rem 0 1rem 0;
   gap: 35px;
+
+  @media only screen and (max-width: 376px) {
+    padding: 0;
+  }
 `;
 
 export const ThankYouContent = styled(FormContent)`

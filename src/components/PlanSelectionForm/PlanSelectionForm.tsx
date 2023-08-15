@@ -79,11 +79,9 @@ const PlanSelectionForm = ({
                         ? `$${prices.yearly}/yr`
                         : `$${prices.monthly}/mo`}
                     </PlanSubtitle>
-                    <OfferText>
-                      {isYearly && offerDetails?.yearly
-                        ? offerDetails.yearly
-                        : offerDetails?.monthly && offerDetails.monthly}
-                    </OfferText>
+                    {isYearly && offerDetails?.yearly && (
+                      <OfferText>{offerDetails.yearly}</OfferText>
+                    )}
                   </CardDetails>
                 </Card>
               );

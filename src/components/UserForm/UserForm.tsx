@@ -146,6 +146,7 @@ const UserForm = ({
           />
         </FormField>
       </FormBody>
+
       <FormFooter>
         <PrimaryButton onClick={handleSubmit} disabled={!isUserDataValid}>
           Next Step
