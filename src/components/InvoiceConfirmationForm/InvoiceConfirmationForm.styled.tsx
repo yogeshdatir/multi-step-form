@@ -28,7 +28,6 @@ export const SelectedPlan = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-bottom: 0.5rem;
 `;
 
 export const Divider = styled.hr`
@@ -37,6 +36,7 @@ export const Divider = styled.hr`
   width: 100%;
   height: 1px;
   margin: 0;
+  margin-top: 0.5rem;
 `;
 
 export const AddOnRow = styled.div`

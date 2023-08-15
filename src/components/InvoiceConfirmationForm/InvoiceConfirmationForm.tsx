@@ -76,7 +76,7 @@ const InvoiceConfirmationForm = ({
                 : `$${selectedPlan?.prices.monthly}/mo`}
             </PlanTitle>
           </SelectedPlan>
-          <Divider />
+          {!!selectedAddOns.length && <Divider />}
           {selectedAddOns.map((selectedAddOn: IAddOn) => {
             return (
               <AddOnRow key={selectedAddOn.title}>

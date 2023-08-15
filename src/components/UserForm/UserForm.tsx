@@ -38,6 +38,7 @@ const validatorMap = {
   phone: validateInternationalPhone,
 };
 
+// TODO: Add touch validation support
 const UserForm = ({
   next,
   formData,

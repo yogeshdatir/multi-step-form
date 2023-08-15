@@ -34,7 +34,7 @@ const INITIAL_FORM_DATA: IFormData = {
   email: '',
   phone: '',
   selectedPlan: {
-    id: undefined,
+    id: 100,
     isYearly: false,
   },
   selectedAddOnIds: [],

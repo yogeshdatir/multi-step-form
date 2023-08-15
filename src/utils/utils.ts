@@ -10,7 +10,7 @@
 */
 const PHONE_REGEX = new RegExp(
   // eslint-disable-next-line no-useless-escape
-  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g
+  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
 );
 
 export const validateInternationalPhone = (phoneNumber: string) => {
