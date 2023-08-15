@@ -84,9 +84,6 @@ const UserForm = ({
     validateFields([fieldName]);
   };
 
-  const isUserDataValid = !Object.values(formErrors).filter((err) => err !== '')
-    .length;
-
   const handleSubmit = () => {
     if (validateFields()) next();
   };
@@ -148,9 +145,7 @@ const UserForm = ({
       </FormBody>
 
       <FormFooter>
-        <PrimaryButton onClick={handleSubmit} disabled={!isUserDataValid}>
-          Next Step
-        </PrimaryButton>
+        <PrimaryButton onClick={handleSubmit}>Next Step</PrimaryButton>
       </FormFooter>
     </FormContent>
   );
