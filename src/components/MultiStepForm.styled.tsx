@@ -8,11 +8,9 @@ export const FormContainer = styled.div`
   max-width: 940px;
   min-height: 600px;
   display: flex;
-  gap: 100px;
   border-radius: 15px;
 
   @media only screen and (max-width: 376px) {
-    gap: 0;
     min-height: auto;
     border-radius: 0;
   }
@@ -44,9 +42,11 @@ export const FormContent = styled.div`
   flex-direction: column;
   padding: 2.5rem 0 1rem 0;
   gap: 35px;
+  margin: 0 100px;
 
   @media only screen and (max-width: 376px) {
     padding: 0;
+    margin: 0;
   }
 `;
 
