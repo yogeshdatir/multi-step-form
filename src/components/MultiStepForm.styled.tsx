@@ -4,10 +4,16 @@ import mobileSidebarBg from '../assets/images/bg-sidebar-mobile.svg';
 export const FormContainer = styled.div`
   padding: 1rem;
   background: var(--white, #fff);
-  width: 100%;
   min-width: 320px;
-  min-height: 100vh;
+  max-width: 940px;
+  min-height: 600px;
   display: flex;
+  gap: 100px;
+
+  @media only screen and (max-width: 376px) {
+    gap: 0;
+    min-height: auto;
+  }
 `;
 
 export const MobileFormContainer = styled(FormContainer)`
