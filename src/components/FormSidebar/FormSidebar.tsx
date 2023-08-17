@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const FormSidebar = ({ currentStepIndex, stepDetails, goto }: IProps) => {
-  const isMobileScreen = useMediaQuery('(max-width: 376px)');
+  const isMobileScreen = useMediaQuery('(max-width: 769px)');
 
   if (isMobileScreen) {
     return (

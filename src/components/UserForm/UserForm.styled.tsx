@@ -112,7 +112,7 @@ export const FormFooter = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     width: 100%;
     position: fixed;
     bottom: 0;

@@ -10,7 +10,7 @@ export const FormContainer = styled.div`
   display: flex;
   border-radius: 15px;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     min-height: auto;
     border-radius: 0;
   }
@@ -44,7 +44,7 @@ export const FormContent = styled.div`
   gap: 35px;
   margin: 0 100px;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     padding: 0;
     margin: 0;
   }

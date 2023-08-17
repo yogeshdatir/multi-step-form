@@ -123,7 +123,7 @@ const MultiStepForm = () => {
     addOns,
   });
 
-  const isMobileScreen = useMediaQuery('(max-width: 376px)');
+  const isMobileScreen = useMediaQuery('(max-width: 769px)');
 
   if (isMobileScreen) {
     return (

@@ -4,7 +4,7 @@ export const CardList = styled.div`
   display: flex;
   gap: 18px;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     flex-direction: column;
   }
 `;
@@ -26,7 +26,7 @@ export const Card = styled.div`
     background: var(--very-light-grey, #f8f9ff);
   }
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     flex-direction: row;
     width: 100%;
     padding: 1rem;

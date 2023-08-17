@@ -15,7 +15,7 @@ export const AddOnCard = styled.div`
     background: var(--very-light-grey, #f8f9ff);
   }
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 769px) {
     padding: 1rem;
     gap: 1rem;
   }
