@@ -1,41 +1,9 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-
----
-
 # Frontend Mentor - Multi-step form solution
 
 This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
-- [React + TypeScript + Vite](#react--typescript--vite)
-  - [Expanding the ESLint configuration](#expanding-the-eslint-configuration)
 - [Frontend Mentor - Multi-step form solution](#frontend-mentor---multi-step-form-solution)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
@@ -48,6 +16,9 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
     - [Continued development](#continued-development)
     - [Useful resources](#useful-resources)
   - [Author](#author)
+  - [Extra Screenshots](#extra-screenshots)
+- [React + TypeScript + Vite](#react--typescript--vite)
+  - [Expanding the ESLint configuration](#expanding-the-eslint-configuration)
 
 ## Overview
 
@@ -67,22 +38,12 @@ Users should be able to:
 
 ### Screenshot
 
-<!-- TODO: Add screenshots -->
-
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Screenshot](./src/assets/screenshots/React%20Multi-step%20Form%20-%20multi-step-form-react-fm.netlify.app.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github Repo - multi-step-form](https://github.com/yogeshdatir/multi-step-form)
+- Live Site URL: [Multi step form](https://multi-step-form-react-fm.netlify.app/)
 
 ## My process
 
@@ -116,5 +77,45 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [Yogesh Datir](https://github.com/yogeshdatir)
+- Frontend Mentor - [@yogeshdatir](https://www.frontendmentor.io/profile/yogeshdatir)
+
+## Extra Screenshots
+
+![Screenshot](./src/assets/screenshots/React%20Multi-step%20Form%20-%20multi-step-form-react-fm.netlify.app%202.png)
+
+![Screenshot](./src/assets/screenshots/React%20Multi-step%20Form%20-%20multi-step-form-react-fm.netlify.app%203.png)
+
+![Screenshot](./src/assets/screenshots/React%20Multi-step%20Form%20-%20multi-step-form-react-fm.netlify.app%204.png)
+
+![Screenshot](./src/assets/screenshots/React%20Multi-step%20Form%20-%20multi-step-form-react-fm.netlify.app%205.png)
+
+---
+
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
